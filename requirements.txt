@@ -26,20 +26,13 @@ platformdirs==2.6.2
 ply==3.11
 psycopg2-binary==2.9.5
 pydantic==1.10.4
-pyparsing @ file:///C:/Users/BUILDE~1/AppData/Local/Temp/abs_7f_7lba6rl/croots/recipe/pyparsing_1661452540662/work
 PyQt5==5.15.7
-PyQt5-sip @ file:///C:/Windows/Temp/abs_d7gmd2jg8i/croots/recipe/pyqt-split_1659273064801/work/pyqt_sip
-python-dateutil @ file:///tmp/build/80754af9/python-dateutil_1626374649649/work
 python-multipart==0.0.6
 pytz==2022.7.1
-sip @ file:///C:/Windows/Temp/abs_b8fxd17m2u/croots/recipe/sip_1659012372737/work
-six @ file:///tmp/build/80754af9/six_1644875935023/work
 sniffio==1.3.0
 SQLAlchemy==2.0.0
 starlette==0.22.0
-toml @ file:///tmp/build/80754af9/toml_1616166611790/work
 tomli==2.0.1
-tornado @ file:///C:/ci/tornado_1662458743919/work
 typing_extensions==4.4.0
 uvicorn==0.20.0
 wincertstore==0.2
