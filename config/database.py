@@ -8,7 +8,7 @@ database = "inventory_nkgu"
 ip = "localhost"
 port = 5432
 
-database_render = "postgres://kallox:uv7p11I2zJFAWVhDThJGUsWCp3Lx7mOy@dpg-cg8t5b64dad531tt9a30-a.oregon-postgres.render.com/inventory_nkgu"
+database_render = "postgresql://postgres:okBAG6RHetD0JzVdfjXR@containers-us-west-129.railway.app:7821/railway"
 
 DATABASE_URL = database_render
 engine = create_engine(DATABASE_URL, pool_size=20, max_overflow=0)
