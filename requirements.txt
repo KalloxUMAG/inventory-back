@@ -1,3 +1,3 @@
 pip SQLAlchemy
-pip psycopg2
+pip psycopg2-binary
 pip install fastapi
