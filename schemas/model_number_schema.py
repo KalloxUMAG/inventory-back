@@ -1,10 +1,10 @@
 from pydantic import BaseModel
 from typing import Optional
 
-class RoomSchema(BaseModel):
+class ModelNumberSchema(BaseModel):
     id: Optional[int]
-    name: str
-    unit_id: int
+    number: str
+    model_id: int
 
     class Config:
         orm_mode = True

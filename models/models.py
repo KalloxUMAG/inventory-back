@@ -23,14 +23,28 @@ class Invoices(Base):
     equipments: Mapped[List['Equipments']] = relationship("Equipments", backref="Invoices")
     date = mapped_column(Date)
 
+class Brands(Base):
+    __tablename__ = "Brands"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    name: Mapped[str] = mapped_column(String, unique=True, nullable=False)
+    models: Mapped[List['Models']] = relationship("Models", backref="Brands", cascade="all, delete")
+
 class Models(Base):
     __tablename__ = "Models"
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    model: Mapped[str] = mapped_column(String)
-    brand: Mapped[str] = mapped_column(String)
-    equipments: Mapped[List['Equipments']] = relationship("Equipments", backref="Models")
-    product_number: Mapped[int] = mapped_column(Integer)
+    name: Mapped[str] = mapped_column(String, nullable=False)
+    model_numbers: Mapped[List['Model_numbers']] = relationship("Model_numbers", backref="Models", cascade="all, delete")
+    brand_id: Mapped[Optional[int]] = mapped_column(Integer, ForeignKey("Brands.id", ondelete="CASCADE"))
+
+class Model_numbers(Base):
+    __tablename__ = "Model_numbers"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    number: Mapped[str] = mapped_column(String, nullable=False)
+    equipments: Mapped[List['Equipments']] = relationship("Equipments", backref="Model_numbers")
+    model_id: Mapped[Optional[int]] = mapped_column(Integer, ForeignKey("Models.id", ondelete="CASCADE"))
 
 class Projects(Base):
     __tablename__ = "Projects"
@@ -68,7 +82,7 @@ class Equipments(Base):
     observation: Mapped[Optional[str]] = mapped_column(String)
     supplier_id: Mapped[Optional[int]] = mapped_column(Integer, ForeignKey("Suppliers.id", ondelete="SET NULL"))
     invoice_id: Mapped[Optional[int]] = mapped_column(Integer, ForeignKey("Invoices.id", ondelete="SET NULL"))
-    model_id: Mapped[Optional[int]] = mapped_column(Integer, ForeignKey("Models.id", ondelete="SET NULL"))
+    model_number_id: Mapped[Optional[int]] = mapped_column(Integer, ForeignKey("Model_numbers.id", ondelete="SET NULL"))
     room_id: Mapped[Optional[int]] = mapped_column(Integer, ForeignKey("Rooms.id", ondelete="SET NULL"))
     maintenances: Mapped[List['Maintenances']] = relationship("Maintenances", backref="Equipments", cascade="delete,merge")
     projects: Mapped[List['Projects']] = relationship("Projects", secondary="Equipments_has_Projects", back_populates="equipments")
