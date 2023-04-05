@@ -1,5 +1,4 @@
 from fastapi import APIRouter, Response, Depends, UploadFile
-from fastapi.responses import FileResponse
 from starlette.status import HTTP_201_CREATED, HTTP_404_NOT_FOUND, HTTP_204_NO_CONTENT
 from models.models import Equipments, Suppliers, Invoices, Model_numbers, Rooms, Units, Buildings, Maintenances, Brands, Models
 from schemas.equipment_schema import EquipmentSchema, EquipmentFullSchema, EquipmentListSchema
