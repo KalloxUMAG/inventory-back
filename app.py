@@ -31,3 +31,4 @@ routes = [buildings, brands, equipments, equipments_projects, invoices, maintena
 
 for route in routes:
         app.include_router(route)
+        
