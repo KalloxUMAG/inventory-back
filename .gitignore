@@ -1,0 +1,7 @@
+__pycache__
+
+#images
+/images/equipments/
+/images/invoices/
+
+!.gitkeep

@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Response, Depends, UploadFile
+from fastapi.responses import FileResponse
 from starlette.status import HTTP_201_CREATED, HTTP_404_NOT_FOUND, HTTP_204_NO_CONTENT
 from models.models import Equipments, Suppliers, Invoices, Model_numbers, Rooms, Units, Buildings, Maintenances, Brands, Models
 from schemas.equipment_schema import EquipmentSchema, EquipmentFullSchema, EquipmentListSchema
@@ -34,6 +35,7 @@ def add_equipment(equipment: EquipmentSchema, db:Session = Depends(get_db)):
    if equipment.invoice_id != None:
       db_invoice = get_invoice(equipment.invoice_id, db=db)
       if not db_invoice:
+         print("No se encontro el invoice", equipment.invoice_id)
          return Response(status_code=HTTP_404_NOT_FOUND)
    if equipment.model_number_id != None:
       db_model_number = get_model_number(equipment.model_number_id, db=db)

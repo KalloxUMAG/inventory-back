@@ -8,7 +8,7 @@ class InvoiceSchema(BaseModel):
     id: Optional[int]
     number: int
     date: date
-    image: Optional[bytes]
+    supplier_id: Optional[int]
 
     class Config:
         orm_mode = True

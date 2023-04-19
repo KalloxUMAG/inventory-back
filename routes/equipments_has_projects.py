@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Response, Depends
 from starlette.status import HTTP_201_CREATED, HTTP_404_NOT_FOUND, HTTP_204_NO_CONTENT
-from models.models import Equipments_has_Projects, Projects, Stages, Equipments
+from models.models import Equipments_has_Projects, Projects, Stages, Equipments, Project_owners
 from schemas.equipment_has_project_schema import EquipmentHasProjectSchema, EquipmentHasProjectsSchema, ProjectHasEquipmentsSchema
 from typing import List
 from config.database import get_db
@@ -43,8 +43,8 @@ def get_project_equipments(project_id: int, db:Session = Depends(get_db)):
 
 @equipments_projects.get("/api/equipment_projects/{equipment_id}", response_model=EquipmentHasProjectsSchema)
 def get_equipment_projects(equipment_id: int, db:Session = Depends(get_db)):
-    result = db.query(Equipments_has_Projects.project_id.label('id'), Equipments_has_Projects.stage_id, Projects.name.label('project_name'), Stages.name.label('stage_name')).outerjoin(
-        Stages, Stages.id == Equipments_has_Projects.stage_id).outerjoin(Projects, Projects.id == Equipments_has_Projects.project_id
+    result = db.query(Equipments_has_Projects.project_id.label('id'), Equipments_has_Projects.stage_id, Projects.name.label('project_name'), Stages.name.label('stage_name'), Project_owners.name.label('project_owner')).outerjoin(
+        Stages, Stages.id == Equipments_has_Projects.stage_id).outerjoin(Projects, Projects.id == Equipments_has_Projects.project_id).outerjoin(Project_owners, Project_owners.id == Projects.id
         ).filter(Equipments_has_Projects.equipment_id == equipment_id).first()
     
     if not result:

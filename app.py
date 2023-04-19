@@ -16,6 +16,7 @@ from routes.model_numbers import model_numbers
 from routes.maintenances import maintenances
 from routes.invoices import invoices
 from routes.projects import projects
+from routes.project_owners import project_owners
 from routes.stages import stages
 
 def create_tables():
@@ -26,7 +27,7 @@ app = FastAPI()
 app.mount("/images", StaticFiles(directory="images"), name="images")
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
 
-routes = [buildings, brands, equipments, equipments_projects, invoices, maintenances, models, model_numbers, units, projects, rooms, stages, suppliers, suppliers_contacts]
+routes = [buildings, brands, equipments, equipments_projects, invoices, maintenances, models, model_numbers, units, projects, project_owners, rooms, stages, suppliers, suppliers_contacts]
 
 for route in routes:
         app.include_router(route)

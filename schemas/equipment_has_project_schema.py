@@ -14,6 +14,7 @@ class EquipmentHasProjectsSchema(BaseModel):
     project_name: str
     stage_id: Optional[int]
     stage_name: Optional[str]
+    project_owner: Optional[str]
 
     class Config:
         orm_mode = True

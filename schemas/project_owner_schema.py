@@ -1,11 +1,9 @@
 from pydantic import BaseModel
 from typing import Optional
-from datetime import date
 
-class ProjectSchema(BaseModel):
+class ProjectOwnerSchema(BaseModel):
     id: Optional[int]
     name: str
-    owner_id: Optional[int]
 
     class Config:
         orm_mode = True
